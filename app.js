@@ -4,6 +4,14 @@ const employees = [];
 
 function onReady() {
   $('#js-form-add-employee').on('submit', submitForm);
+  $('#js-table-body').on('click', '.js-btn-delete', deleteEmployee);
+}
+
+function deleteEmployee() {
+  const employeeIndex = $(this).data('cat');
+  employees.splice(employeeIndex, 1);
+
+  render();
 }
 
 function submitForm(event) {
@@ -38,7 +46,8 @@ function render() {
 
   let totalSalary = 0;
 
-  for (let employee of employees) {
+  for (let employeeIndex in employees) {
+    const employee = employees[employeeIndex];
     totalSalary += employee.salary;
 
     $('#js-table-body').append(`
@@ -48,7 +57,9 @@ function render() {
                 <td>${employee.id}</td>
                 <td>${employee.position}</td>
                 <td>${employee.salary}</td>
-                <td><button>X</button></td>
+                <td>
+                    <button data-cat=${employeeIndex} class="js-btn-delete">X</button>
+                </td>
             </tr>
         `);
   }
@@ -64,6 +75,4 @@ function render() {
   totalSalary = totalSalary.toFixed(2);
 
   $('#js-monthly-total').text(`Monthly Total: $${totalSalary}`);
-
-  //   if(totalSalary > 20000) {}
 }
