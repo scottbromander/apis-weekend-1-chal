@@ -1,5 +1,7 @@
 $(document).ready(onReady);
 
+const employees = [];
+
 function onReady() {
   $('#js-form-add-employee').on('submit', submitForm);
 }
@@ -17,7 +19,9 @@ function submitForm(event) {
 
   clearInputs();
 
-  console.table(employee);
+  employees.push(employee);
+
+  console.table(employees);
 }
 
 function clearInputs() {
