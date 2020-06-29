@@ -22,6 +22,7 @@ function submitForm(event) {
   employees.push(employee);
 
   console.table(employees);
+  render();
 }
 
 function clearInputs() {
@@ -30,4 +31,21 @@ function clearInputs() {
   $('#js-input-id').val('');
   $('#js-input-position').val('');
   $('#js-input-salary').val('');
+}
+
+function render() {
+  $('#js-table-body').empty();
+
+  for (let employee of employees) {
+    $('#js-table-body').append(`
+            <tr>
+                <td>${employee.first_name}</td>
+                <td>${employee.last_name}</td>
+                <td>${employee.id}</td>
+                <td>${employee.position}</td>
+                <td>${employee.salary}</td>
+                <td><button>X</button></td>
+            </tr>
+        `);
+  }
 }
