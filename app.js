@@ -36,7 +36,11 @@ function clearInputs() {
 function render() {
   $('#js-table-body').empty();
 
+  let totalSalary = 0;
+
   for (let employee of employees) {
+    totalSalary += employee.salary;
+
     $('#js-table-body').append(`
             <tr>
                 <td>${employee.first_name}</td>
@@ -48,4 +52,18 @@ function render() {
             </tr>
         `);
   }
+
+  totalSalary = totalSalary / 12;
+
+  if (totalSalary > 20000) {
+    $('#js-monthly-total').addClass('red');
+  } else {
+    $('#js-monthly-total').removeClass('red');
+  }
+
+  totalSalary = totalSalary.toFixed(2);
+
+  $('#js-monthly-total').text(`Monthly Total: $${totalSalary}`);
+
+  //   if(totalSalary > 20000) {}
 }
