@@ -15,5 +15,15 @@ function submitForm(event) {
     salary: parseInt($('#js-input-salary').val()),
   };
 
+  clearInputs();
+
   console.table(employee);
+}
+
+function clearInputs() {
+  $('#js-input-firstName').val('');
+  $('#js-input-lastName').val('');
+  $('#js-input-id').val('');
+  $('#js-input-position').val('');
+  $('#js-input-salary').val('');
 }
